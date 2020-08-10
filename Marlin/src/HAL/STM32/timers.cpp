@@ -265,19 +265,16 @@ static constexpr uintptr_t timers_in_use[] = {
   #endif
   };
 
-template <typename T>
-static constexpr bool recursive_verify_no_occurrence(T value, const T* begin, const T* end) {
-  return begin == end || (value != *begin && recursive_verify_no_occurrence(value, begin + 1, end));
-}
-
-template <typename T>
-static constexpr bool recursive_verify_no_duplicates(const T* begin, const T* end) {
-  return begin == end || (recursive_verify_no_occurrence(*begin, begin + 1, end) && recursive_verify_no_duplicates(begin + 1, end));
+static constexpr bool verify_no_duplicate_timers() {
+  LOOP_L_N(i, COUNT(timers_in_use))
+    LOOP_S_L_N(j, i + 1, COUNT(timers_in_use))
+      if (timers_in_use[i] == timers_in_use[j]) return false;
+  return true;
 }
 
 // If this assertion fails at compile time, review the timers_in_use array. If default_envs is
 // defined properly in platformio.ini, VS Code can evaluate the array when hovering over it,
 // making it easy to identify the conflicting timers.
-static_assert(recursive_verify_no_duplicates(&timers_in_use[0], &timers_in_use[0] + COUNT(timers_in_use)), "One or more timer conflict detected");
+static_assert(verify_no_duplicate_timers(), "One or more timer conflict detected");
 
 #endif // ARDUINO_ARCH_STM32 && !STM32GENERIC
