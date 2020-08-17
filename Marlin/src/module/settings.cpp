@@ -426,12 +426,6 @@ typedef struct SettingsDataStruct {
     touch_calibration_t touch_calibration;
   #endif
 
-  //
-  // TOUCH_SCREEN_CALIBRATION
-  //
-  #if ENABLED(TOUCH_SCREEN_CALIBRATION)
-    touch_calibration_t touch_calibration;
-  #endif
 
 } SettingsData;
 
