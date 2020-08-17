@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -53,7 +53,7 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 //#ifndef Z_MIN_PROBE_PIN
-//  #define Z_MIN_PROBE_PIN  PB15
+//  #define Z_MIN_PROBE_PIN                 PB15
 //#endif
 
 //
@@ -142,8 +142,8 @@
 #define TFT_RESET_PIN                       PD6
 #define TFT_BACKLIGHT_PIN                   PD3
 
-#define TFT_CS_PIN                         PD7
-#define TFT_RS_PIN                         PD11
+#define TFT_CS_PIN                          PD7
+#define TFT_RS_PIN                          PD11
 
 #define TOUCH_CS_PIN                        PB6
 #define TOUCH_SCK_PIN                       PB3

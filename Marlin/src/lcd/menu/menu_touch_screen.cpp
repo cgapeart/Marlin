@@ -16,19 +16,21 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
 #include "../../inc/MarlinConfigPre.h"
 
-#if ENABLED(TOUCH_SCREEN_CALIBRATION)
+#if BOTH(HAS_LCD_MENU, TOUCH_SCREEN_CALIBRATION)
 
 #include "menu.h"
 #include "../ultralcd.h"
 
 void touch_screen_calibration() {
+
   ui.touch_calibration();
+
 }
 
 #endif // TOUCH_SCREEN_CALIBRATION
