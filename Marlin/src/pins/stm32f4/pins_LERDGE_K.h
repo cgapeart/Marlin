@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -28,6 +28,11 @@
 #define DEFAULT_MACHINE_NAME "LERDGE"
 
 #define I2C_EEPROM
+#ifdef E2END
+   #undef E2END
+#endif
+#define E2END 0xFFFF 
+#define MARLIN_EEPROM_SIZE 0x10000
 
 //
 // Servos
@@ -44,9 +49,9 @@
 //
 // Z Probe (when not Z_MIN_PIN)
 //
-//#ifndef Z_MIN_PROBE_PIN
-//  #define Z_MIN_PROBE_PIN  PG6
-//#endif
+#ifndef Z_MIN_PROBE_PIN
+  #define Z_MIN_PROBE_PIN                 PG6
+#endif
 
 //
 // Filament runout
@@ -60,45 +65,50 @@
 #define X_STEP_PIN                          PG1
 #define X_DIR_PIN                           PB10
 #define X_ENABLE_PIN                        PG0
-#ifndef X_CS_PIN
-  #define X_CS_PIN       PB2
-#endif
+//#ifndef X_CS_PIN
+//  #define X_CS_PIN                        PB2
+//#endif
 
 #define Y_STEP_PIN                          PF14
 #define Y_DIR_PIN                           PF15
 #define Y_ENABLE_PIN                        PF13
-#ifndef Y_CS_PIN
-  #define Y_CS_PIN       PE2
-#endif
+//#ifndef Y_CS_PIN
+//  #define Y_CS_PIN                        PE2
+//#endif
 
 #define Z_STEP_PIN                          PF11
 #define Z_DIR_PIN                           PF12
 #define Z_ENABLE_PIN                        PC5
-#ifndef Z_CS_PIN
-  #define Z_CS_PIN       PE3
-#endif
+//#ifndef Z_CS_PIN
+//  #define Z_CS_PIN                        PE3
+//#endif
+#define Z2_STEP_PIN                          PF4
+#define Z2_DIR_PIN                           PF3
+#define Z2_ENABLE_PIN                        PF5
+//#ifndef Z2_CS_PIN
+//  #define Z2_CS_PIN                        PE0
+//#endif
 
 #define E0_STEP_PIN                         PC14
 #define E0_DIR_PIN                          PC13
 #define E0_ENABLE_PIN                       PC15
-#ifndef E0_CS_PIN
-  #define E0_CS_PIN      PE4
-#endif
+//#ifndef E0_CS_PIN
+//  #define E0_CS_PIN                       PE4
+//#endif
 
 #define E1_STEP_PIN                         PF1
 #define E1_DIR_PIN                          PF0
 #define E1_ENABLE_PIN                       PF2
-#ifndef E1_CS_PIN
-  #define E1_CS_PIN      PE1
-#endif
+//#ifndef E1_CS_PIN
+//  #define E1_CS_PIN                       PE2
+//#endif
 
-#define E2_STEP_PIN                         PF4
-#define E2_DIR_PIN                          PF3
-#define E2_ENABLE_PIN                       PF5
-#ifndef E2_CS_PIN
-  #define E2_CS_PIN      PE0
-#endif
-
+//#define E2_STEP_PIN                         PF4
+//#define E2_DIR_PIN                          PF3
+//#define E2_ENABLE_PIN                       PF5
+//#ifndef E2_CS_PIN
+//  #define E2_CS_PIN      PE0
+//#endif
 //
 // Temperature Sensors
 //
@@ -107,7 +117,7 @@
 #define TEMP_BED_PIN                        PC0   // Analog Input
 
 // Lergde-K can choose thermocouple/thermistor mode in software.
-// For use with thermistors, these pins must be OUT/LOW. 
+// For use with thermistors, these pins must be OUT/LOW.
 // This is done automatically.
 #define TEMP_0_TR_ENABLE_PIN                PF10
 #define TEMP_1_TR_ENABLE_PIN                PF9
@@ -122,11 +132,12 @@
 #ifndef FAN_PIN
   #define FAN_PIN                           PF7
 #endif
-#define FAN1_PIN                            PF6
-#define FAN2_PIN                            PF8
+#define FAN1_PIN                            PB1
+#define FAN2_PIN                            PB0
+//#define CONTROLLER_FAN_PIN                  PF8
 
 #ifndef E0_AUTO_FAN_PIN
-  #define E0_AUTO_FAN_PIN                   PF6
+  #define E0_AUTO_FAN_PIN                   PF7
 #endif
 
 //
@@ -136,13 +147,13 @@
 //#define CASE_LIGHT_PIN_DO                 -1
 //#define NEOPIXEL_PIN                      -1
 #ifndef RGB_LED_R_PIN
-  #define RGB_LED_R_PIN     PB7
+  #define RGB_LED_R_PIN                     PB7
 #endif
 #ifndef RGB_LED_G_PIN
-  #define RGB_LED_G_PIN     PB8
+  #define RGB_LED_G_PIN                     PB8
 #endif
 #ifndef RGB_LED_B_PIN
-  #define RGB_LED_B_PIN     PB9
+  #define RGB_LED_B_PIN                     PB9
 #endif
 
 //
@@ -174,8 +185,8 @@
 #define TFT_RESET_PIN                       PD6
 #define TFT_BACKLIGHT_PIN                   PD3
 
-#define TFT_CS_PIN                         PD7
-#define TFT_RS_PIN                         PD11
+#define TFT_CS_PIN                          PD7
+#define TFT_RS_PIN                          PD11
 
 #define TOUCH_CS_PIN                        PG15
 #define TOUCH_SCK_PIN                       PB3
